@@ -17,8 +17,8 @@ services:
   - type: static
     name: ecommerce-frontend
     rootDir: ecommerce-frontend
-    buildCommand: npm ci && npm run build
-    publishPath: dist
+    buildCommand: "npm run build"
+    publishPath: "dist"
     envVars:
       - key: NODE_VERSION
         value: 20
