@@ -1,23 +1,24 @@
-import axios from 'axios';
+import { api } from '../../utils/api';
 import { useState, useEffect } from 'react';
 import { OrderSummary } from './OrderSummary';
 import { PaymentSummary } from './PaymentSummary';
-import { Link } from 'react-router';
+import { Link } from 'react-router-dom';
 import './checkout-header.css';
 import './CheckoutPage.css';
 
 export function CheckoutPage({ cart, loadCart }) {
   const [deliveryOptions, setDeliveryOptions] = useState([]);
   const [paymentSummary, setPaymentSummary] = useState(null);
+  const totalItems = cart?.reduce((sum, item) => sum + (item.quantity || 0), 0) || 0;
 
   useEffect(() => {
     const fetchCheckoutData = async () => {
-      let response = await axios.get(
+      let response = await api.get(
         '/api/delivery-options?expand=estimatedDeliveryTime'
       );
       setDeliveryOptions(response.data);
 
-      response = await axios.get('/api/payment-summary');
+      response = await api.get('/api/payment-summary');
       setPaymentSummary(response.data);
     };
 
@@ -41,8 +42,8 @@ export function CheckoutPage({ cart, loadCart }) {
           </div>
 
           <div className="checkout-header-middle-section">
-            Checkout (<a className="return-to-home-link"
-              href="/">3 items</a>)
+            Checkout (<Link className="return-to-home-link"
+              to="/">{totalItems} {totalItems === 1 ? 'item' : 'items'}</Link>)
           </div>
 
           <div className="checkout-header-right-section">

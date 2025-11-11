@@ -1,6 +1,7 @@
-import axios from 'axios';
+import { api } from '../../utils/api';
 import dayjs from 'dayjs';
 import { useState, useEffect, Fragment } from 'react';
+import { Link } from 'react-router-dom';
 import { Header } from '../../components/Header';
 import { formatMoney } from '../../utils/money';
 import './OrdersPage.css';
@@ -11,7 +12,7 @@ export function OrdersPage({ cart }) {
   const [orders, setOrders] = useState([]);
 
   useEffect(() => {
-    axios.get('/api/orders?expand=products')
+    api.get('/api/orders?expand=products')
       .then((response) => {
         setOrders(response.data);
       });
@@ -74,11 +75,11 @@ export function OrdersPage({ cart }) {
                         </div>
 
                         <div className="product-actions">
-                          <a href="/tracking">
+                          <Link to="/tracking" state={{ orderId: order.id, productId: orderProduct.product.id }}>
                             <button className="track-package-button button-secondary">
                               Track package
                             </button>
-                          </a>
+                          </Link>
                         </div>
                       </Fragment>
                     );
