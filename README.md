@@ -28,7 +28,7 @@ The backend handles product APIs and image storage efficiently using *SQLite* as
 git clone https://github.com/Inchara-Manjunath/ecommerce-website.git
 
 # Go to project directory
-cd ecommerce-website<img width="1869" height="909" alt="Screenshot 2025-11-08 165108" src="https://github.com/user-attachments/assets/b3d2fa80-3754-4660-804d-e6edba8f77cf" />
+cd ecommerce-website
 
 
 # Install dependencies
