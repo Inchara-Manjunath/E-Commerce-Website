@@ -3,34 +3,6 @@ services:
     name: ecommerce-backend
     env: node
     rootDir: ecommerce-backend
-    buildCommand: npm ci
-    startCommand: node server.js
-    plan: free
-    envVars:
-      - key: PORT
-        value: 3000
-    autoDeploy: true
-
-  - type: static
-    name: ecommerce-frontend
-    rootDir: ecommerce-frontend
-    buildCommand: npm ci && npm run build
-    staticPublishPath: dist
-    plan: free
-    envVars:
-      # Set this after first deploy to the backend's public URL, e.g. https://ecommerce-backend.onrender.com
-      - key: VITE_API_BASE
-        value: ""
-    redirects:
-      - source: "/*"
-        destination: "/index.html"
-        status: 200
-
-services:
-  - type: web
-    name: ecommerce-backend
-    env: node
-    rootDir: ecommerce-backend
     plan: free
     buildCommand: npm ci
     startCommand: node server.js
@@ -53,6 +25,6 @@ services:
       # This must point to the backend web service URL after it's created.
       # Example: https://ecommerce-backend-xxxxx.onrender.com
       - key: VITE_API_BASE
-        value: https://YOUR-BACKEND-ONRENDER-URL
+        value: https://e-commerce-website-kac0.onrender.com
 
 
