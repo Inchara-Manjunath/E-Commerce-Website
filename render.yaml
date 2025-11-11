@@ -10,20 +10,15 @@ services:
     envVars:
       - key: NODE_ENV
         value: production
-      # Add DATABASE_URL here if you use an external DB
-      # - key: DATABASE_URL
-      #   value: postgres://user:pass@host:5432/db
 
   - type: static
     name: ecommerce-frontend
     rootDir: ecommerce-frontend
-    buildCommand: "npm run build"
-    publishPath: "dist"
+    buildCommand: npm ci && npm run build
+    publishPath: dist
     envVars:
       - key: NODE_VERSION
         value: 20
-      # This must point to the backend web service URL after it's created.
-      # Example: https://ecommerce-backend-xxxxx.onrender.com
       - key: VITE_API_BASE
         value: https://e-commerce-website-kac0.onrender.com
 
